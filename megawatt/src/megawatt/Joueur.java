@@ -33,13 +33,13 @@ public class Joueur {
 	}
 	
 	/**
-	 * demande aux joueurs de selectionner les usines à activer( 
+	 * demande aux joueurs de selectionner les usines Ã  activer( 
 	 * et demande les ressources necessaires en fonction des usines)
-	 * vérifie si les usines choisient sont activables et retourne le 
-	 * nombres de villes alimentées. 
+	 * vÃ©rifie si les usines choisient sont activables et retourne le 
+	 * nombres de villes alimentÃ©es. 
 	 * @return
 	 */
-	//modifié par françois
+	//modifiÃ© par franÃ§ois
 	public int choisirUsines(){
 		Scanner sc=new Scanner(System.in);
 		int choix=0;
@@ -54,8 +54,8 @@ public class Joueur {
 			this.montrerRessources();
 			this.montrerArgent();
 			this.montrerNbVilles();
-			System.out.println("\nSélectionnez les usines que vous voulez utiliser (Taper par exemple 2 pour sélectionner l'usine 2)");
-			System.out.println("Tapez 0 lorsque vous avez validé votre sélection");
+			System.out.println("\nSÃ©lectionnez les usines que vous voulez utiliser (Taper par exemple 2 pour sÃ©lectionner l'usine 2)");
+			System.out.println("Tapez 0 lorsque vous avez validÃ© votre sÃ©lection");
 			choix=sc.nextInt();
 			if(choix==0) validation_choix=true;
 			if(choix!=0){
@@ -64,7 +64,7 @@ public class Joueur {
 			}
 		}while(!validation_choix);
 		
-		//PHASE POUR DETERMINER LE NOMBRE DE VILLES ALIMENTÉES AINSI QUE LES RESSOURCES CONSOMMÉES PAR LE JOUEUR
+		//PHASE POUR DETERMINER LE NOMBRE DE VILLES ALIMENTÃ‰ES AINSI QUE LES RESSOURCES CONSOMMÃ‰ES PAR LE JOUEUR
 		int somme=0; //somme des villes alimentables par les usines choisies
 		int type;
 		for(int i=0;i<usines_choisies.size();i++){
@@ -73,7 +73,7 @@ public class Joueur {
 			if(usine.usine_hybride()){
 				do{
 					System.out.println("Ressources Usine Hybride: "+Arrays.toString(usine.getRessources()));
-					System.out.println("Tapez la ressource que vous voulez utilisez pour cette usine:\nCharbon=0\nGaz=1\nPétrole=2\nUranium=3");
+					System.out.println("Tapez la ressource que vous voulez utilisez pour cette usine:\nCharbon=0\nGaz=1\nPÃ©trole=2\nUranium=3");
 					type=sc.nextInt();
 				}while(type<0||type>4||this.ressources[type]<usine.getRessources()[type]);
 				this.ressources[type]-=usine.getRessources()[type];
@@ -82,10 +82,10 @@ public class Joueur {
 			}
 		}
 		
-		return somme>this.getNbrVilles()?this.getNbrVilles():somme; //faut se rappeler que le joueur ne peut pas alimenter plus de ville qu'il n'en possède
+		return somme>this.getNbrVilles()?this.getNbrVilles():somme; //faut se rappeler que le joueur ne peut pas alimenter plus de ville qu'il n'en possÃ¨de
 	}
 	
-	//fonction rajoutée par françois pour savoir si l'usine sélectionnée peut être utilisée
+	//fonction rajoutÃ©e par franÃ§ois pour savoir si l'usine sÃ©lectionnÃ©e peut Ãªtre utilisÃ©e
 	public boolean usine_non_selectionnable(int choix){
 		boolean choix_invalide=true;
 		boolean usine_alimentable=false;
@@ -96,7 +96,7 @@ public class Joueur {
 		if(choix_invalide) return true;
 		else{
 			for(int i=0;i<4;i++){
-				//le joueur posséde les ressources pour alimenter l'usine ou bien l'usine est écologique
+				//le joueur possÃ©de les ressources pour alimenter l'usine ou bien l'usine est Ã©cologique
 				if(this.usines.get(choix-1).getRessources()[i]<=this.ressources[i] &&this.usines.get(choix-1).getRessources()[i]>0
 						||this.usines.get(choix-1).usine_ecologique()) usine_alimentable=true; 
 			}
@@ -107,14 +107,14 @@ public class Joueur {
 	
 	
 	/**
-	 * actualise l'argent du joueur en fonction des villes alimentées
+	 * actualise l'argent du joueur en fonction des villes alimentÃ©es
 	 */
 	public void remunererJoueur(int nbreVillesAlimentees){
 		int[] remuneration={10,22,33,44,54,64,73,
 							82,90,98,105,112,118,124,
-							129,134,138,142,145,148,150};  //argent gagné en fonction des villes alimentées (correspond à l'indice du tableau)
+							129,134,138,142,145,148,150};  //argent gagnÃ© en fonction des villes alimentÃ©es (correspond Ã  l'indice du tableau)
 		this.argent+=remuneration[nbreVillesAlimentees];
-		System.out.println("\nVous avez gagné "+remuneration[nbreVillesAlimentees]+" électrons\n");
+		System.out.println("\nVous avez gagnÃ© "+remuneration[nbreVillesAlimentees]+" Ã©lectrons\n");
 		
 		this.montrerUsines();
 		this.montrerRessources();
@@ -139,14 +139,6 @@ public class Joueur {
 		this.argent = argent;
 	}
 
-	public int getNbrVilles() {
-		return nbrVilles;
-	}
-
-	public void setNbrVilles(int nbrVilles) {
-		this.nbrVilles = nbrVilles;
-	}
-
 	public List<Usine> getUsines() {
 		return usines;
 	}
@@ -165,7 +157,6 @@ public class Joueur {
 	///////Guillaume
 	public void addVilles(Ville v) {
 		this.villes.add(v);
-		this.nbrVilles++;
 	}
 	///////Guillaume
 	public void depenser(int cout) {
@@ -206,14 +197,14 @@ public class Joueur {
 	}
 	
 	/**
-	 * ajoute une usine au joueur tout en vérifiant ses ressources et
+	 * ajoute une usine au joueur tout en vÃ©rifiant ses ressources et
 	 * son nombre d'usines.
 	 * @param usine
 	 */
 	public void ajouterUsine(Usine usine){
 		if(this.usines.size()==3){
 			this.montrerUsines();
-			System.out.println("Trop d'usines: Choisir l'index de l'usine à supprimer:");
+			System.out.println("Trop d'usines: Choisir l'index de l'usine Ã  supprimer:");
 			Scanner sc=new Scanner(System.in);
 			int choixUsine=sc.nextInt();
 			this.usines.remove(choixUsine);
@@ -225,7 +216,7 @@ public class Joueur {
 	}
 	
 	
-	//fonction rajoutée par françois
+	//fonction rajoutÃ©e par franÃ§ois
 	/**
 	 * permet de connaitre quelle est la valeur maximale des usines du joueur
 	 */
@@ -238,7 +229,7 @@ public class Joueur {
 	}
 	
 	
-	//fonction rajoutée par moi pour montrer les usines du joueur
+	//fonction rajoutÃ©e par moi pour montrer les usines du joueur
 	public void montrerUsines(){
 		System.out.println("Voici vos usines:");
 		for(int i=0;i<this.usines.size();i++){
@@ -246,18 +237,18 @@ public class Joueur {
 			System.out.println();
 		}
 	}
-	//fonction rajoutée par moi pour montrer les ressources du joueur
+	//fonction rajoutÃ©e par moi pour montrer les ressources du joueur
 	public void montrerRessources(){
 		System.out.println("Voici vos ressources:");
 		String[] type={"charbon","gaz","petrole","uranium"};
 		for(int i=0;i<4;i++) System.out.print(type[i]+": "+this.ressources[i]+"  ");
 		System.out.println();
 	}
-	//fonction rajoutée par moi pour montrer l'argent du joueur
+	//fonction rajoutÃ©e par moi pour montrer l'argent du joueur
 	public void montrerArgent(){
-		System.out.println("Votre argent: "+this.argent+" électrons");
+		System.out.println("Votre argent: "+this.argent+" Ã©lectrons");
 	}
-	//fonction rajoutée par moi pour montrer le nombre de villes du joueur
+	//fonction rajoutÃ©e par moi pour montrer le nombre de villes du joueur
 	public void montrerNbVilles(){
 		System.out.println("Votre nombre de villes: "+this.getNbrVilles());
 	}
